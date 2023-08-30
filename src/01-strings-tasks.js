@@ -233,9 +233,10 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  const strIn = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  const strOut = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const strIn = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ?!';
+  const strOut = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm ?!';
   let result = '';
+
   for (let i = 0; i < str.length; i += 1) result += strOut[strIn.indexOf(str[i])];
   return result;
 }
