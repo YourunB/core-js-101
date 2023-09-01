@@ -589,8 +589,15 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  let arrRes = [];
+  return array.reduce((acc, i) => {
+    if (acc.get(keySelector(i)) !== undefined) arrRes = acc.get(keySelector(i));
+    else arrRes = [];
+    arrRes.push(valueSelector(i));
+    acc.set(keySelector(i), arrRes);
+    return acc;
+  }, new Map());
 }
 
 
@@ -607,8 +614,8 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.reduce((acc, i) => acc.concat(childrenSelector(i)), []);
 }
 
 
@@ -624,8 +631,15 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  let res = null;
+  indexes.map((i) => {
+    if (indexes.length === 2) res = arr[i][i];
+    if (indexes.length === 1) res = arr[i];
+    if (indexes.length > 2) res = arr[0][0][i];
+    return res;
+  });
+  return res;
 }
 
 
@@ -647,8 +661,26 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  let center = 0;
+  let arr1 = [];
+  let arr2 = [];
+  let arr3 = [];
+  let arrRes = [];
+  if (arr.length === 1) arrRes = arr;
+  if (arr.length % 2 !== 0 && arr.length > 1) {
+    center = ((arr.length - 1) / 2) + 1;
+    arr1 = arr.splice(0, center - 1);
+    arr2.push(center);
+    arr3 = arr.splice(-center + 1);
+    arrRes = arrRes.concat(arr3).concat(arr2).concat(arr1);
+  }
+  if (arr.length % 2 === 0 && arr.length > 1) {
+    arr1 = arr.splice(arr.length / 2);
+    arr2 = arr.splice(-arr1.length);
+    arrRes = arrRes.concat(arr1).concat(arr2);
+  }
+  return arrRes;
 }
 
 
