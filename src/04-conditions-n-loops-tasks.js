@@ -501,8 +501,27 @@ function getMatrixProduct(arr1, arr2) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  let res;
+  if (position[0][0] === 'X' && position[0][1] === 'X' && position[0][2] === 'X') res = 'X';
+  if (position[1][0] === 'X' && position[1][1] === 'X' && position[1][2] === 'X') res = 'X';
+  if (position[2][0] === 'X' && position[2][1] === 'X' && position[2][2] === 'X') res = 'X';
+  if (position[0][0] === 'X' && position[1][0] === 'X' && position[2][0] === 'X') res = 'X';
+  if (position[0][1] === 'X' && position[1][1] === 'X' && position[2][1] === 'X') res = 'X';
+  if (position[0][2] === 'X' && position[1][2] === 'X' && position[2][2] === 'X') res = 'X';
+  if (position[0][0] === 'X' && position[1][1] === 'X' && position[2][2] === 'X') res = 'X';
+  if (position[0][2] === 'X' && position[1][1] === 'X' && position[2][0] === 'X') res = 'X';
+
+  if (position[0][0] === '0' && position[0][1] === '0' && position[0][2] === '0') res = '0';
+  if (position[1][0] === '0' && position[1][1] === '0' && position[1][2] === '0') res = '0';
+  if (position[2][0] === '0' && position[2][1] === '0' && position[2][2] === '0') res = '0';
+  if (position[0][0] === '0' && position[1][0] === '0' && position[2][0] === '0') res = '0';
+  if (position[0][1] === '0' && position[1][1] === '0' && position[2][1] === '0') res = '0';
+  if (position[0][2] === '0' && position[1][2] === '0' && position[2][2] === '0') res = '0';
+  if (position[0][0] === '0' && position[1][1] === '0' && position[2][2] === '0') res = '0';
+  if (position[0][2] === '0' && position[1][1] === '0' && position[2][0] === '0') res = '0';
+
+  return res;
 }
 
 
