@@ -420,8 +420,20 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(arr) {
+  const res = '';
+  const path = [];
+  let pathLength = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    pathLength = arr[i].length;
+    path.push(arr[i].split('/'));
+  }
+  for (let i = 0; i < pathLength; i += 1) {
+    if (path.every((item) => item[i] === path[0][i]) === false) {
+      return i !== 0 ? `${path[0].slice(0, i).join('/')}/` : '';
+    }
+  }
+  return res;
 }
 
 
